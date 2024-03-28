@@ -1,4 +1,5 @@
-## Simple IR Raw Receive and Send Sketches for ATmega328P Arduinos - Rev 1***
+## Simple IR Raw Receive and Send Sketches for ATmega328P Arduinos
+## Rev 1***
 
 ### For obscure IR remote profiles, these sketches capture and send in raw format.
 ### No libraries are required.
