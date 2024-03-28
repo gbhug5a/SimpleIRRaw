@@ -1,4 +1,4 @@
-## Simple IR Raw Capture and Send Sketches for ATmega328P Arduinos
+## Simple IR Raw Receive and Send Sketches for ATmega328P Arduinos - Rev 1***
 
 ### For obscure IR remote profiles, these sketches capture and send in raw format.
 ### No libraries are required.
@@ -25,4 +25,6 @@ All of these sketches are written for the ATmega328P Arduinos - Uno, Nano and Pr
 In testing, it's best to have the transmitter six feet or more away from the receiver,
 and room ambient lighting should be low.  Anything which hampers reception will reduce
 the duration of the On periods and increase the duration of the Off periods.
+
+*** IR LED drive circuit must have IR LED On when D10 is high.
 

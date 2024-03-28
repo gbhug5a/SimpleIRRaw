@@ -1,5 +1,6 @@
 /*  AdjustGenerator.ino
  *  for Atmega328P processors (Uno, Nano, ProMini 16MHz)
+ *  Circuit must turn on IR LED when D10 is high.
  *  This generates a sequence of 38KHz ~600uS bits to drive an IR LED.
  *  The carrier-on and carrier-off periods are exactly the same.
  *  This is used in conjunction with IRCaptureRaw.ino to set the
@@ -22,7 +23,7 @@ void setup() {
 
   TIMSK0 = 0;                                        // Disable Timer0 interrupts (millis)
 
-  pinMode (LED, OUTPUT); digitalWrite(LED,LOW);
+  pinMode (LED, OUTPUT); digitalWrite(LED,LOW);      // D10 normally output low = IR LED off
 
   // set up Timer 1 - gives us 38.005 kHz 
   // Fast PWM top at OCR1A

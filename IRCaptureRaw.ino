@@ -1,4 +1,4 @@
-// IRCaptureRaw.ino
+// IRCaptureRaw.ino   Rev 1
 // for ATmega328P processors (Uno, Nano, ProMini - 8 or 16MHz)
 // This captures incoming IR from a remote control as raw data.
 // An IR receiver module should be connected to D8.
@@ -23,7 +23,7 @@ void setup() {
   delay(1000);
   Serial.begin (115200);
   Serial.println();
-  pinMode(recvPin, INPUT);
+  pinMode(recvPin, INPUT_PULLUP);
   activeLO = true;                                // assume no transmission happening now
   if (!digitalRead(recvPin)) activeLO = false;
 
