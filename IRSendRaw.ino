@@ -1,5 +1,5 @@
 /*
- * IRSendRaw.ino   Rev 1
+ * IRSendRaw.ino   Rev 2
  * Sends raw IR data on D10
  * For Uno, Nano, Pro Mini
  * No libraries needed
@@ -7,8 +7,8 @@
  * Timing entries fetched directly from flash - PROGMEM
  * Circuit must turn on IR LED when D10 is high
  */
-
-const byte irLED = 10;                                    // Timer 1 "B" output: OC1B
+const unsigned int frequency = 38;                   // frequency in KHz (typically 38)
+const byte irLED = 10;                               // Timer 1 "B" output: OC1B
 volatile unsigned int irCount;
 volatile unsigned int newirCount;
 volatile unsigned int irK;
@@ -17,21 +17,20 @@ byte oldTIMSK0;
 unsigned long countDiv, halfDiv;
 
 // raw definition arrays must be global
+// sample keypress in NEC protocol
 
-const unsigned int One[] PROGMEM = {                      // must be unsigned int (2-byte)
- 3488,  3488,   872,  2616,   872,  2616,   872,   872,   // alternating carrier-on, -off
-  872,  2616,   872,  2616,   872,   872,   872,   872,   // this example is Technics protocol
-  872,   872,   872,   872,   872,  2616,   872,   872,   //   with one repeat
-  872,   872,   872,   872,   872,  2616,   872,   872,
-  872,   872,   872,  2616,   872,  2616,   872,  2616,
-  872,  2616,   872,   872,   872,  2616,   872, 40000,
- 3488,  3488,   872,  2616,   872,  2616,   872,   872,
-  872,  2616,   872,  2616,   872,   872,   872,   872,
-  872,   872,   872,   872,   872,  2616,   872,   872,
-  872,   872,   872,   872,   872,  2616,   872,   872,
-  872,   872,   872,  2616,   872,  2616,   872,  2616,
-  872,  2616,   872,   872,   872,  2616,   872};
-  
+const unsigned int Key[] PROGMEM = {                 // must be unsigned int (2-byte)
+9000, 4500,                                          // example of NEC protocol
+562, 562, 562, 562, 562, 562,
+562, 1688, 562, 562, 562, 562, 562, 562,
+562, 562, 562, 562, 562, 1688, 562, 1688,
+562, 562, 562, 1688, 562, 562, 562, 562,
+562, 562, 562, 1688, 562, 1688, 562, 1688,
+562, 562, 562, 562, 562, 562, 562, 562,
+562, 1688, 562, 562, 562, 562, 562, 562,
+562, 1688, 562, 1688, 562, 1688, 562, 1688,
+562, 562, 562};
+
 void setup() {
 
   pinMode (irLED, OUTPUT); digitalWrite(irLED,LOW);  // D10 normally output low = IR LED off
@@ -44,10 +43,10 @@ void setup() {
 }
 
 void loop() {
-  sendRaw ( One , sizeof(One)/2, 36 );               // Send an array of raw data, KHz
-  delay(5000);
-  sendRaw ( One , sizeof(One)/2, 36 );               // Send again
-  while(1);                                          // endless loop   
+
+  delay(2000);
+  sendRaw (Key , sizeof(Key)/2, frequency);          // Send an array of raw data, KHz
+  while(1);                                          // endless loop
 }
 
 void sendRaw(const unsigned int buf[], unsigned int len, unsigned int hz) {
