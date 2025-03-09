@@ -7,6 +7,9 @@
 // Results will include any repeats.
 // The displayed numbers alternate between transmitting and idle states.
 
+#ifndef __AVR_ATmega328P__
+#error - Board must use ATmega328P microcontroller
+#endif
 
 const int maxEntries = 600;                       // total number of entries
 const int maxExtras = 32;                         // number of long entries

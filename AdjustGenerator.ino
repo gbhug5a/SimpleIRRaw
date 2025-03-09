@@ -11,6 +11,11 @@
  *  Hit Reset on the Arduino to send again.
  *  Thanks to Nick Gammon for most of the code.
  */
+
+#ifndef __AVR_ATmega328P__
+#error - Board must use ATmega328P microcontroller
+#endif
+
 const byte LED = 10;                                // Timer 1 "B" output: OC1B
 
 // Clock frequency divided by 38 kHz, rounded

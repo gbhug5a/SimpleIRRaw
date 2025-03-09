@@ -1,12 +1,17 @@
 /*
    IRSendRaw.ino   Rev 3
    Sends raw IR data on D10
-   For Uno, Nano, Pro Mini
+   For ATmega328P - Uno, Nano, Pro Mini
    No libraries needed
    Sends automatically on boot.  Hit reset to send again.
    Timing entries fetched directly from flash - PROGMEM
    Circuit must turn on IR LED when D10 is high
 */
+
+#ifndef __AVR_ATmega328P__
+#error - Board must use ATmega328P microcontroller
+#endif
+
 const unsigned int frequency = 38;                   // frequency in KHz (typically 38)
 const byte irLED = 10;                               // Timer 1 "B" output: OC1B
 volatile unsigned int irCount;
