@@ -3,6 +3,16 @@
 ### For obscure IR remote profiles, these sketches capture and send in raw format.
 ### No libraries are required.
 
+### July, 2025 - IR Carrier Frequency Detector Added
+
+This is a short sketch which detects the IR carrier frequency. It is typically
+38KHz, but designers may use lower or higher frequencies.  Also included is a
+schematic of the circuit needed to receive the carrier.  It uses a typical IR LED
+as a poor man's photodiode.  It is much less efficient than a real photodiode,
+but good enough for this purpose.  The remote should be fired directly into the
+top of the IR LED from about two centimeters away - you may have to experiment.
+
+
 ### Rev 3 - March, 2025
 
 All the code was revised in March, 2025, to deal properly with long values that
@@ -34,7 +44,8 @@ In testing, it's best to have the transmitter six feet or more away from the rec
 and room ambient lighting should be low.  Anything which hampers reception will reduce
 the duration of the On periods and increase the duration of the Off periods.  Use the
 briefest possible button press to determine the mimimum transmission. Some protocols
-require one or more repeats.
+require one or more repeats.  The carrier frequency detector is an exception - the
+remote must be held very close to the IR LED receiver.
 
 Note: The IR LED drive circuit must have the IR LED *ON* when D10 is high.
 

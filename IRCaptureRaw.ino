@@ -38,7 +38,7 @@ void setup() {
   TCCR1A = 0;                                     // set up Timer1
   TCCR1B = 0;
   TCCR1C = 0;
-  TCNT0  = 0;                                     // clear Timer1 count
+  TCNT1  = 0;                                     // clear Timer1 count
   sei();
   Start = true;
 }
